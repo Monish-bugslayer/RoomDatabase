@@ -1,0 +1,31 @@
+The database class that contains the database and servers as the accesspoint for the data
+data entries that represents tables in your app's db
+Data access objects (DAOs) that provide methods that your app can use to query, update, insert, and delete data in the database
+The app can use dao to udate the data or to retrive the data
+
+A Room entity includes fields for each column in the corresponding table in the database,
+including one or more columns that comprise the primary key
+
+
+if you need instances of an entity to be uniquely identified by a combination of multiple columns,
+you can define a composite primary key by listing those columns in the primaryKeys property of @Entity:
+
+Composite Primary Key
+@Entity(primaryKeys = ["firstName", "lastName"])
+data class User(
+    val firstName: String?,
+    val lastName: String?
+)
+
+By using ignore we can ignore the unwanted columns
+When an entity inherits fields from the parent class then in child class use @Entity(ignoredColumns=["column_name"])
+
+The database class should be abstract because
+to skip implementing unnecessary methods of the RoomDatabase Base Class.
+
+You can observe a particular table for changes using the InvalidationTracker class which you can acquire via RoomDatabase.getInvalidationTracker.
+
+For convenience, Room allows you to return LiveData from Query methods.
+It will automatically observe the related tables as long as the LiveData has active observers.
+
+
